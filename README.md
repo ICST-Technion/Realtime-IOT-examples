@@ -19,7 +19,8 @@ ESP32 is outputting data to serial console.
 - ESP32 listens to all “children” of /command so it is updated if any of them is changed.
 ![image](https://github.com/ICST-Technion/Realtime-IOT-examples/assets/3014352/b8060bc2-cb42-474d-801d-6578649a1824)
 
-
+**Example 3 - command list - push method**\
+WIP
 
 
 
