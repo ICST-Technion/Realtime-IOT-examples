@@ -145,11 +145,9 @@ class _MyHomePageState extends State<MyHomePage> {
     _commandSubscription.cancel();
   }
 
-  Future<void> _setcommand(int value) async {
-    await _commandRef.update({
-      'runningCount': ServerValue.increment(1),
-      'type': value,
-    });
+  Future<void> _setcommand(int command_index) async {
+    await _commandRef.update({'runningCount': ServerValue.increment(1)});
+    await _commandRef.push().set(<int>{command_index});
   }
 
   @override
