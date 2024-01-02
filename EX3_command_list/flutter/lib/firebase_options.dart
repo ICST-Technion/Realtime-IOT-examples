@@ -54,25 +54,24 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    appId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    messagingSenderId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    projectId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    authDomain:
-        'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', //remove https:// and trailing /
+    apiKey: 'AIzaSyDlvKIG2e7CWdQq6h7vVEhywx5jGzvRgaw',
+    appId: '1:751518757733:web:c3ec762fbfbb2202b1a78c',
+    messagingSenderId: '751518757733',
+    projectId: 'esp32-firebase-ea2d2',
+    authDomain: 'esp32-firebase-ea2d2.firebaseapp.com',
     databaseURL:
-        'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', //remove https:// and trailing /
-    storageBucket: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    measurementId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+        'https://esp32-firebase-ea2d2-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'flutterfire-e2e-tests.appspot.com',
+    measurementId: 'G-JN95N1JV2E',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    appId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    messagingSenderId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    projectId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    apiKey: 'AIzaSyDlvKIG2e7CWdQq6h7vVEhywx5jGzvRgaw',
+    appId: '1:751518757733:android:7f288c63c338b256b1a78c',
+    messagingSenderId: '751518757733',
+    projectId: 'esp32-firebase-ea2d2',
     databaseURL:
-        'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', //remove https:// and trailing /
-    storageBucket: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+        'https://esp32-firebase-ea2d2-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'esp32-firebase-ea2d2.appspot.com',
   );
 }

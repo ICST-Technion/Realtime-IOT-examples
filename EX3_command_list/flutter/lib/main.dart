@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _setcommand(int command_index) async {
     await _commandRef.update({'runningCount': ServerValue.increment(1)});
-    await _commandRef.push().set(<int>{command_index});
+    await _commandRef.child('type').push().set(command_index);
   }
 
   @override
