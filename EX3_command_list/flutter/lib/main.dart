@@ -6,7 +6,7 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-// import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:flutter/material.dart';
 
@@ -72,9 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> init() async {
     final database = FirebaseDatabase.instance;
     _statusRef = database.ref('status');
-    _commandRef = database
-        .ref()
-        .child('command'); //here we are referencing children of the root node
+    _commandRef = database.ref().child(
+        'command/type/'); //here we are referencing children of the root node
 
     database.setLoggingEnabled(true); //output logs to console for debugging
 
@@ -146,8 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _setcommand(int command_index) async {
-    await _commandRef.update({'runningCount': ServerValue.increment(1)});
-    await _commandRef.child('type').push().set(command_index);
+    // await _commandRef.update({'runningCount': ServerValue.increment(1)});
+    await _commandRef.push().set(command_index);
   }
 
   @override
@@ -215,6 +214,25 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text(
                   '\nCurrent status is ${_status == 0 ? 'undefined' : _statusButtonText}\n'),
             )),
+          ),
+          Flexible(
+            child: FirebaseAnimatedList(
+              key: ValueKey<bool>(true),
+              query: _commandRef,
+              itemBuilder: (context, snapshot, animation, index) {
+                return SizeTransition(
+                  sizeFactor: animation,
+                  child: ListTile(
+                    trailing: IconButton(
+                      onPressed:
+                          () {}, // => _deleteMessage(snapshot), //TODO delete message
+                      icon: const Icon(Icons.delete),
+                    ),
+                    title: Text('$index: ${snapshot.value}'),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
