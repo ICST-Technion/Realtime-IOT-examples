@@ -52,7 +52,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _command = 0;
   int _status = 0;
   String _statusButtonText = 'undefined';
   late DatabaseReference _commandRef;
@@ -87,6 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
       await _statusRef.keepSynced(true);
     }
 
+    await _statusRef.set(0); // set initial status to 0
+
     setState(() {
       initialized = true;
     });
@@ -104,12 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
     _commandSubscription = _commandRef.onValue.listen(
       (DatabaseEvent event) {
         var data = event.snapshot.value as Map;
-        _command = data['runningCount'] as int;
-        // _commandType = data['type'] as int;
 
         setState(() {
           _error = null;
-          _command = _command;
         });
       },
       onError: (Object o) {
@@ -145,7 +143,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _setcommand(int command_index) async {
-    // await _commandRef.update({'runningCount': ServerValue.increment(1)});
     await _commandRef.push().set(command_index);
   }
 
@@ -155,22 +152,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Database Example'),
+        title: const Text('Flutter Robot Controller'),
       ),
       body: Column(
         children: [
-          Flexible(
-            child: Center(
-              child: _error == null
-                  ? Text(
-                      'command count is $_command \n',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  : Text(
-                      'Error:\n${_error!.message}',
-                    ),
-            ),
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -180,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () async {
                     await _setcommand(1);
                   },
-                  child: const Text('1=Turn'),
+                  child: const Text('1=Forward'),
                 ),
               ),
               Padding(
@@ -189,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () async {
                     await _setcommand(2);
                   },
-                  child: const Text('2=Forward'),
+                  child: const Text('2=Left'),
                 ),
               ),
               Padding(
@@ -198,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () async {
                     await _setcommand(3);
                   },
-                  child: const Text('3=Stop'),
+                  child: const Text('3=Right'),
                 ),
               ),
             ],
